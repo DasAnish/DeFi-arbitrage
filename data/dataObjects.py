@@ -20,14 +20,6 @@ class BookEntry:
     #     self.timestamp: str = ''
 
 
-class Book:
-    def __init__(self):
-        self.entries: Generator[BookEntry] = None
-
-    def read_book(self, filename):
-        self.entries = read_in_csv(filename)
-
-
 @dataclass()
 class ArbitrageEntry:
     bid: PriceVolume

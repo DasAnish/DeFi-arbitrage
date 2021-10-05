@@ -1,7 +1,7 @@
 from typing import List, Generator
 from .dataIO import *
 from dataclasses import dataclass
-
+import os
 
 @dataclass
 class PriceVolume:
@@ -36,7 +36,8 @@ def read_orders():
 
 
 def read_orders_generator():
-    with open('data/tradeorder.txt', 'r') as f:
+    print(os.getcwd())
+    with open('../data/tradeorder.txt', 'r') as f:
         for line in f.readlines():
             order = eval(line)
             yield order

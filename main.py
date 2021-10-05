@@ -1,5 +1,4 @@
 from data import *
-import datetime
 
 
 def writeOutTrades(trade):
@@ -11,13 +10,13 @@ def arbitrage(entry1, entry2):
     idx_bid = 0
     idx_ask = 10
     order = ArbitrageEntry()
+    order.timestamp = entry1.timestamp
     # buying entry2 selling entry1
     while (idx_bid < 10) and (idx_ask < 20):
         if entry1[idx_bid].price > entry2[idx_ask].price:
             volume = min(entry1[idx_bid].volume, entry2[idx_ask].volume)
             order.bid = PriceVolume(entry1[idx_bid].price, volume)
             order.ask = PriceVolume(entry2[idx_ask].price, volume)
-            order.timestamp = '{:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())
             # need to execute trade/send to IO, below is add to trade book
             tradeBook.add_entry(order)
             entry1[idx_bid].volume -= volume

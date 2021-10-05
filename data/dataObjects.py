@@ -14,6 +14,7 @@ class BookEntry:
     bids: List[PriceVolume]
     asks: List[PriceVolume]
     timestamp: str
+    ID: str
     # def __init__(self):
     #     self.bids: List[PriceVolume] = []
     #     self.asks: List[PriceVolume] = []
@@ -25,6 +26,8 @@ class ArbitrageEntry:
     bid: PriceVolume
     ask: PriceVolume
     timestamp: str
+    bidExchangeID: str
+    askExchangeID: str
     # def __init__(self):
     #     self.bid: PriceVolume = PriceVolume()
     #     self.ask: PriceVolume = PriceVolume()

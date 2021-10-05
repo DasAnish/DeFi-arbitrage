@@ -61,3 +61,7 @@ class DataIO:
     def close(self):
         for _, exchange, _ in self.exchanges:
             exchange.close()
+
+    async def send_order(self, order):
+        pass
+

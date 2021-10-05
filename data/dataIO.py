@@ -12,15 +12,6 @@ sys.path.append(root + '/python')
 import ccxt.async_support as ccxt  # noqa: E402
 
 
-def read_orders():
-    orders = []
-    with open('data/tradeorder.txt', 'r') as f:
-        line = f.readline()
-        order = eval(line)
-        orders.append(order)
-    return orders
-
-
 class DataIO:
     def __init__(self, asyncio_loop):
         exchanges_symbols = (
@@ -54,9 +45,11 @@ class DataIO:
             ask = PriceVolume(askPrice, askVolume)
             asks.append(ask)
 
+        timestamp = exchange.milliseconds()
+        timestamp = exchange.iso8601(timestamp)
         bookEntry = BookEntry(bids=bids,
                               asks=asks,
-                              timestamp=_orderbook['datetime'],
+                              timestamp=timestamp,
                               exchange_id=exchange_id)
         return bookEntry
 

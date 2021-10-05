@@ -12,6 +12,15 @@ sys.path.append(root + '/python')
 import ccxt.async_support as ccxt  # noqa: E402
 
 
+def read_orders():
+    orders = []
+    with open('data/tradeorder.txt', 'r') as f:
+        line = f.readline()
+        order = eval(line)
+        orders.append(order)
+    return orders
+
+
 class DataIO:
     def __init__(self, asyncio_loop):
         exchanges_symbols = (
@@ -62,6 +71,8 @@ class DataIO:
         for _, exchange, _ in self.exchanges:
             exchange.close()
 
-    async def send_order(self, order):
-        pass
+    def send_order(self, order):
+        with open('data/tradeorder.txt', 'a') as f:
+            f.write(str(order) + "\n")
+
 

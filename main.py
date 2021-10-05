@@ -1,12 +1,12 @@
 from data import *
-from asyncio import gather, get_event_loop, wait
+from asyncio import gather, get_event_loop
 
 
 # entry1 is hb, entry2 is bnc
 def arbitrage(tradebook, dataIO, entry1, entry2):
     idx_bid = 0
     idx_ask = 0
-    order = ArbitrageEntry(None, None, None, None, None)
+    order = ArbitrageEntry(*([None]*5))
     order.bidExchangeID = entry1.exchange_id
     order.askExchangeID = entry2.exchange_id
     order.timestamp = entry1.timestamp
@@ -30,13 +30,10 @@ def arbitrage(tradebook, dataIO, entry1, entry2):
 
 
 if __name__ == '__main__':
-    tradeBook = Trades
+    tradeBook = []
     event_loop = get_event_loop()
     dataIO = DataIO(event_loop)
     while True:
         output = event_loop.run_until_complete(dataIO.get_next_entries())
         arbitrage(tradeBook, dataIO, output[0], output[1])
         arbitrage(tradeBook, dataIO, output[1], output[0])
-    # results = event_loop.run_until_complete(dataIO.get_next_entries())
-    # print(results)
-    # dataIO.close()

@@ -63,9 +63,14 @@ class DataIO:
     def close(self):
         for _, exchange, _ in self.exchanges:
             exchange.close()
+        self.fileObj.close()
 
     def send_order(self, order):
-        with open('data/tradeorder.txt', 'a') as f:
-            f.write(str(order) + "\n")
+        if self.fileObj is None:
+            self.fileObj = open('data/tradeorder.txt', 'a')
+
+        self.fileObj.write(str(order) + '\n')
+        # with open('data/tradeorder.txt', 'a') as f:
+        #     f.write(str(order) + "\n")
 
 

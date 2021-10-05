@@ -9,11 +9,12 @@ class PriceVolume:
     volume: float
 
 
-@dataclass()
+@dataclass
 class BookEntry:
     bids: List[PriceVolume]
     asks: List[PriceVolume]
     timestamp: str
+    exchange_id: str
     # def __init__(self):
     #     self.bids: List[PriceVolume] = []
     #     self.asks: List[PriceVolume] = []

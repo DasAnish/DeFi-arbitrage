@@ -10,6 +10,8 @@ def arbitrage(entry1, entry2):
     idx_bid = 0
     idx_ask = 10
     order = ArbitrageEntry()
+    order.bidExchangeID = entry1.exchangeID
+    order.askExchangeID = entry2.exchangeID
     order.timestamp = entry1.timestamp
     # buying entry2 selling entry1
     while (idx_bid < 10) and (idx_ask < 20):

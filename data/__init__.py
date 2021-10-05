@@ -1,2 +1,2 @@
 from .dataIO import DataIO
-from .dataObjects import PriceVolume, BookEntry, ArbitrageEntry, Trades
+from .dataObjects import PriceVolume, BookEntry, ArbitrageEntry
